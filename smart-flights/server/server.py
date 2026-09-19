@@ -28,7 +28,7 @@ from config import load_profile  # noqa: E402
 
 mcp = MCPServer(
     name="smart-flights",
-    version="0.1.0",
+    version="0.2.0",
     instructions=(
         "Поиск и ранжирование авиабилетов по двум источникам: Google Flights и Aviasales. "
         "Цены приводятся к одной валюте, к тарифу добавляется оценка стоимости багажа. "
