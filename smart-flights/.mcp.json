@@ -1,11 +1,8 @@
 {
   "mcpServers": {
     "smart-flights": {
-      "command": "${CLAUDE_PLUGIN_ROOT}/.venv/bin/python",
-      "args": ["${CLAUDE_PLUGIN_ROOT}/server/server.py"],
-      "env": {
-        "SMART_FLIGHTS_ROOT": "${CLAUDE_PLUGIN_ROOT}"
-      }
+      "command": "${CLAUDE_PLUGIN_ROOT}/server/launch.sh",
+      "args": ["${CLAUDE_PROJECT_DIR}"]
     }
   }
 }
