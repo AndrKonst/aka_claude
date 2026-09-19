@@ -1,0 +1,202 @@
+<title>Варианты перелёта</title>
+<style>
+  :root {
+    --bg: #fbfaf9; --surface: #ffffff; --border: #e4e0da; --text: #1c1917;
+    --muted: #6f6861; --accent: #1f6f5c; --accent-soft: #e6f0ec;
+    --warn: #8a5a1b; --warn-soft: #fdf3e3; --danger: #a33a2c;
+    --shadow: 0 1px 2px rgba(28,25,23,.05), 0 8px 24px rgba(28,25,23,.05);
+  }
+  :root:not([data-theme="light"]) { }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17161a; --surface: #201f24; --border: #33313a; --text: #f0eeeb;
+      --muted: #a6a09b; --accent: #6ec4a8; --accent-soft: #1d3a33;
+      --warn: #e0b06a; --warn-soft: #3a2f1c; --danger: #e8897a;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17161a; --surface: #201f24; --border: #33313a; --text: #f0eeeb;
+    --muted: #a6a09b; --accent: #6ec4a8; --accent-soft: #1d3a33;
+    --warn: #e0b06a; --warn-soft: #3a2f1c; --danger: #e8897a;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    padding: 40px 24px 80px;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; }
+  header { margin-bottom: 32px; }
+  h1 { font-size: 30px; line-height: 1.2; margin: 0 0 8px; letter-spacing: -.02em; }
+  .route { font-size: 18px; color: var(--muted); }
+  .meta { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-size: 13px; padding: 4px 11px; border-radius: 999px;
+    background: var(--surface); border: 1px solid var(--border); color: var(--muted);
+  }
+  h2 { font-size: 15px; text-transform: uppercase; letter-spacing: .08em;
+       color: var(--muted); margin: 40px 0 14px; font-weight: 600; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 20px 22px; margin-bottom: 14px; box-shadow: var(--shadow);
+  }
+  .card.best { border-color: var(--accent); }
+  .card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .price { font-size: 27px; font-weight: 650; letter-spacing: -.02em; }
+  .price small { font-size: 14px; font-weight: 400; color: var(--muted); margin-left: 8px; }
+  .score { font-size: 13px; padding: 3px 10px; border-radius: 999px;
+           background: var(--accent-soft); color: var(--accent); font-weight: 600; white-space: nowrap; }
+  .legs { margin-top: 16px; display: grid; gap: 10px; }
+  .leg { display: grid; grid-template-columns: 74px 1fr auto; gap: 14px; align-items: baseline; font-size: 15px; }
+  .leg .time { font-variant-numeric: tabular-nums; font-weight: 600; }
+  .leg .path { color: var(--muted); }
+  .leg .flight { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .layover { font-size: 13px; color: var(--warn); background: var(--warn-soft);
+             padding: 5px 11px; border-radius: 8px; display: inline-block; }
+  .notes { margin-top: 14px; display: grid; gap: 5px; font-size: 13.5px; color: var(--muted); }
+  .notes .risk { color: var(--danger); }
+  .links { margin-top: 15px; padding-top: 14px; border-top: 1px solid var(--border);
+           display: flex; flex-wrap: wrap; gap: 8px; }
+  .links a {
+    font-size: 13px; text-decoration: none; color: var(--text);
+    border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; background: var(--bg);
+  }
+  .links a:hover { border-color: var(--accent); color: var(--accent); }
+  .links a .hint { color: var(--muted); font-size: 11.5px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  .scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+  th, td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  th { font-size: 12.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 600; }
+  tr:last-child td { border-bottom: none; }
+  td.num { font-variant-numeric: tabular-nums; }
+  .bars { display: grid; gap: 7px; }
+  .bar-row { display: grid; grid-template-columns: 92px 1fr 84px; gap: 12px; align-items: center; font-size: 14px; }
+  .bar { height: 22px; border-radius: 6px; background: var(--accent-soft); position: relative; overflow: hidden; }
+  .bar > span { position: absolute; inset: 0 auto 0 0; background: var(--accent); opacity: .55; border-radius: 6px; }
+  .bar-row.best .bar > span { opacity: 1; }
+  .bar-row .val { text-align: right; font-variant-numeric: tabular-nums; }
+  .empty { color: var(--muted); font-style: italic; }
+  footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--border);
+           font-size: 13px; color: var(--muted); }
+  footer ul { margin: 8px 0 0; padding-left: 20px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1 id="title">Варианты перелёта</h1>
+    <div class="route" id="route"></div>
+    <div class="meta" id="meta"></div>
+  </header>
+
+  <section id="offers-section">
+    <h2>Предложения</h2>
+    <div id="offers"></div>
+  </section>
+
+  <section id="calendar-section" hidden>
+    <h2>Цены по дням</h2>
+    <div class="bars" id="calendar"></div>
+  </section>
+
+  <section id="excluded-section" hidden>
+    <h2>Не прошли по ограничениям</h2>
+    <div class="scroll">
+      <table><thead><tr><th>Цена</th><th>Рейс</th><th>Причина</th></tr></thead>
+      <tbody id="excluded"></tbody></table>
+    </div>
+  </section>
+
+  <footer id="footer"></footer>
+</div>
+
+<script type="application/json" id="report-data">
+{
+  "title": "Варианты перелёта",
+  "route": "",
+  "meta": [],
+  "offers": [],
+  "calendar": [],
+  "excluded": [],
+  "notes": []
+}
+</script>
+
+<script>
+  const data = JSON.parse(document.getElementById('report-data').textContent);
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  document.title = data.title || 'Варианты перелёта';
+  $('title').textContent = data.title || 'Варианты перелёта';
+  $('route').textContent = data.route || '';
+  $('meta').innerHTML = (data.meta || []).map(m => `<span class="chip">${esc(m)}</span>`).join('');
+
+  const fmtDur = (min) => {
+    if (min == null) return '';
+    const h = Math.floor(min / 60), m = min % 60;
+    return h ? `${h}ч${m ? ' ' + m + 'м' : ''}` : `${m}м`;
+  };
+  const fmtTime = (iso) => iso ? esc(String(iso).slice(11, 16)) : '';
+  const fmtDate = (iso) => iso ? esc(String(iso).slice(8, 10) + '.' + String(iso).slice(5, 7)) : '';
+
+  $('offers').innerHTML = (data.offers || []).map((o, i) => {
+    const legs = (o.legs || []).map(l => `
+      <div class="leg">
+        <div class="time">${fmtTime(l.departure)}</div>
+        <div class="path">${esc(l.from)} → ${esc(l.to)} · ${fmtTime(l.arrival)}${l.next_day ? ' <b>+1</b>' : ''}</div>
+        <div class="flight">${esc(l.flight || '')}</div>
+      </div>
+      ${l.layover ? `<div class="layover">Пересадка ${esc(l.layover)}</div>` : ''}
+    `).join('');
+
+    const notes = [
+      ...(o.risks || []).map(r => `<div class="risk">▲ ${esc(r)}</div>`),
+      ...(o.notes || []).map(n => `<div>${esc(n)}</div>`),
+    ].join('');
+
+    const links = (o.links || []).map(l =>
+      `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}${l.hint ? ` <span class="hint">${esc(l.hint)}</span>` : ''}</a>`
+    ).join('');
+
+    return `
+      <div class="card${i === 0 ? ' best' : ''}">
+        <div class="card-head">
+          <div class="price">${esc(o.price)}${o.base_price ? `<small>тариф ${esc(o.base_price)}</small>` : ''}</div>
+          ${o.score != null ? `<div class="score">${esc(o.score)} баллов</div>` : ''}
+        </div>
+        <div class="card-head" style="margin-top:4px">
+          <div class="route">${esc(o.summary || '')}</div>
+          <div class="chip">${fmtDate(o.date)} · ${fmtDur(o.duration_min)} · ${esc(o.stops_label || '')}</div>
+        </div>
+        <div class="legs">${legs}</div>
+        ${notes ? `<div class="notes">${notes}</div>` : ''}
+        ${links ? `<div class="links">${links}</div>` : ''}
+      </div>`;
+  }).join('') || '<p class="empty">Подходящих вариантов не найдено.</p>';
+
+  const cal = data.calendar || [];
+  if (cal.length) {
+    $('calendar-section').hidden = false;
+    const prices = cal.filter(d => d.price != null).map(d => d.price);
+    const max = Math.max(...prices, 1), min = Math.min(...prices);
+    $('calendar').innerHTML = cal.map(d => `
+      <div class="bar-row${d.price === min ? ' best' : ''}">
+        <div>${esc(d.label)}</div>
+        <div class="bar">${d.price != null ? `<span style="width:${Math.max(4, d.price / max * 100)}%"></span>` : ''}</div>
+        <div class="val">${d.price != null ? esc(d.price_label || d.price) : '—'}</div>
+      </div>`).join('');
+  }
+
+  const excluded = data.excluded || [];
+  if (excluded.length) {
+    $('excluded-section').hidden = false;
+    $('excluded').innerHTML = excluded.map(e => `
+      <tr><td class="num">${esc(e.price)}</td><td>${esc(e.flight)}</td><td>${esc(e.reason)}</td></tr>`).join('');
+  }
+
+  $('footer').innerHTML = (data.notes || []).length
+    ? `<b>Важно:</b><ul>${data.notes.map(n => `<li>${esc(n)}</li>`).join('')}</ul>`
+    : '';
+</script>

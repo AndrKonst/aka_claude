@@ -1,0 +1,43 @@
+{
+  "_comment": "Оценка сборов за багаж в одну сторону, EUR. Значения ориентировочные: тарифы меняются и зависят от направления, веса и момента оплаты. Правьте под себя — файл читается при каждом запуске.",
+  "_updated": "2026-09",
+  "default": {
+    "low_cost": {"carry_on": 25, "checked": 45},
+    "network": {"carry_on": 0, "checked": 50}
+  },
+  "airlines": {
+    "FR": {"type": "low_cost", "carry_on": 25, "checked": 45},
+    "W6": {"type": "low_cost", "carry_on": 25, "checked": 40},
+    "W4": {"type": "low_cost", "carry_on": 25, "checked": 40},
+    "U2": {"type": "low_cost", "carry_on": 25, "checked": 35},
+    "EC": {"type": "low_cost", "carry_on": 25, "checked": 35},
+    "VY": {"type": "low_cost", "carry_on": 0, "checked": 35},
+    "V7": {"type": "low_cost", "carry_on": 0, "checked": 35},
+    "I2": {"type": "low_cost", "carry_on": 0, "checked": 35},
+    "NT": {"type": "network", "carry_on": 0, "checked": 30},
+    "TP": {"type": "network", "carry_on": 0, "checked": 45},
+    "IB": {"type": "network", "carry_on": 0, "checked": 45},
+    "UX": {"type": "network", "carry_on": 0, "checked": 45},
+    "LH": {"type": "network", "carry_on": 0, "checked": 55},
+    "EW": {"type": "low_cost", "carry_on": 0, "checked": 40},
+    "AF": {"type": "network", "carry_on": 0, "checked": 55},
+    "KL": {"type": "network", "carry_on": 0, "checked": 55},
+    "BA": {"type": "network", "carry_on": 0, "checked": 50},
+    "AZ": {"type": "network", "carry_on": 0, "checked": 50},
+    "SN": {"type": "network", "carry_on": 0, "checked": 50},
+    "OS": {"type": "network", "carry_on": 0, "checked": 50},
+    "LX": {"type": "network", "carry_on": 0, "checked": 50},
+    "SK": {"type": "network", "carry_on": 0, "checked": 50},
+    "AY": {"type": "network", "carry_on": 0, "checked": 50},
+    "LO": {"type": "network", "carry_on": 0, "checked": 45},
+    "TK": {"type": "network", "carry_on": 0, "checked": 0},
+    "PC": {"type": "low_cost", "carry_on": 0, "checked": 35},
+    "SU": {"type": "network", "carry_on": 0, "checked": 35},
+    "S7": {"type": "network", "carry_on": 0, "checked": 30},
+    "DP": {"type": "low_cost", "carry_on": 20, "checked": 30},
+    "U6": {"type": "network", "carry_on": 0, "checked": 30},
+    "UT": {"type": "network", "carry_on": 0, "checked": 25},
+    "KC": {"type": "network", "carry_on": 0, "checked": 0},
+    "B2": {"type": "network", "carry_on": 0, "checked": 30}
+  }
+}

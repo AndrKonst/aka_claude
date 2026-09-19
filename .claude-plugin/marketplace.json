@@ -12,6 +12,11 @@
       "name": "video-markup",
       "source": "./video-markup",
       "description": "Таймкоды (оглавление) по видео: транскрибация через ffmpeg + whisper.cpp и разбивка на смысловые темы"
+    },
+    {
+      "name": "smart-flights",
+      "source": "./smart-flights",
+      "description": "Поиск оптимальных авиабилетов: Google Flights + Aviasales, ранжирование по цене с багажом, времени в пути, пересадкам и надёжности стыковок"
     }
   ]
 }

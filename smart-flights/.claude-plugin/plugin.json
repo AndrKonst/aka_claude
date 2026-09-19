@@ -1,0 +1,16 @@
+{
+  "name": "smart-flights",
+  "description": "Поиск оптимальных авиабилетов: Google Flights + Aviasales, ранжирование по цене с багажом, времени в пути, пересадкам и надёжности стыковок",
+  "version": "0.1.0",
+  "author": {
+    "name": "AndrKonst"
+  },
+  "keywords": [
+    "flights",
+    "travel",
+    "aviasales",
+    "google-flights",
+    "airfare",
+    "авиабилеты"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "currency": "EUR",
+  "home_airports": ["SVQ"],
+  "language": "ru",
+  "country": "ES",
+  "passengers": {
+    "adults": 1,
+    "children": 0,
+    "infants_in_seat": 0,
+    "infants_on_lap": 0
+  },
+  "baggage": {
+    "checked_bags": 0,
+    "carry_on": true
+  },
+  "nearby_radius_km": 150,
+  "max_results": 10,
+  "sources": {
+    "google_flights": true,
+    "aviasales": true
+  },
+  "aviasales_token": null
+}
