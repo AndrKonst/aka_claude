@@ -1,0 +1,17 @@
+{
+  "name": "aka_claude",
+  "owner": {
+    "name": "AndrKonst"
+  },
+  "metadata": {
+    "description": "Маркетплейс плагинов AndrKonst",
+    "version": "0.0.1"
+  },
+  "plugins": [
+    {
+      "name": "video-markup",
+      "source": "./video-markup",
+      "description": "Таймкоды (оглавление) по видео: транскрибация через ffmpeg + whisper.cpp и разбивка на смысловые темы"
+    }
+  ]
+}

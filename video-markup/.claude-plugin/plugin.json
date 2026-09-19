@@ -1,0 +1,15 @@
+{
+  "name": "video-markup",
+  "description": "Таймкоды (оглавление) по видео: транскрибация через ffmpeg + whisper.cpp и разбивка на смысловые темы",
+  "version": "0.1.0",
+  "author": {
+    "name": "AndrKonst"
+  },
+  "keywords": [
+    "video",
+    "timecodes",
+    "whisper",
+    "transcription",
+    "ffmpeg"
+  ]
+}
